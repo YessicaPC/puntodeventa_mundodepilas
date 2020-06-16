@@ -1,0 +1,34 @@
+
+
+.btn-venta:hover {
+  animation:slidebg 2s linear infinite;
+}
+.btn-venta{
+width: 100%;
+height: 250px;
+color: #000;
+background-color: #fff;
+}
+
+.btn-gasto{
+width: 200%;
+height: 150px;
+color: #000;
+background-color: #fff;
+}
+.div-btn{
+padding: 10px;
+width: 50%;
+height: 50%;
+
+}
+.icono-s{
+font-size: 50px;
+color:#343a40;
+}
+
+@keyframes slidebg {
+  to {
+    background-position:20vw;
+  }
+}

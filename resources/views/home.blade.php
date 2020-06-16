@@ -1,5 +1,4 @@
 @extends('layouts.app') 
-
 @section('content')
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -44,10 +43,10 @@
                 <div class="w-100 d-none d-md-block"></div>
 
                 <div class="col-6 div-btn">                            
-                  <button type="button" class="btn  btn-venta btn-primary" data-toggle="modal" data-target="#encargo" data-whatever="@getbootstrap"><i class="icono-s fa fa-list-alt" aria-hidden="true"></i><h4>Encargos</h4></button>
+                  <button type="button" class="btn btn-venta btn-primary" data-toggle="modal" data-target="#encargo" data-whatever="@mdo"><i class="icono-s fa fa-list-alt" aria-hidden="true"></i><h4>Encargos</h4></button>
                   </div>
                 <div class="col-6 div-btn">
-                        <button type="button" class="btn  btn-venta btn-primary" data-toggle="modal" data-target="#entrep" data-whatever="@getbootstrap"><i class="icono-s fa fa-check-square" aria-hidden="true"></i><h4>Entregar Reparacion</h4></button></div>
+                        <button type="button" class="btn btn-venta btn-primary" data-toggle="modal" data-target="#entrep" data-whatever="@mdo"><i class="icono-s fa fa-check-square" aria-hidden="true"></i><h4>Entregar Reparacion</h4></button></div>
                     </div>
             </div>
                 </div>
@@ -89,7 +88,7 @@
     </div>
 
 <!-- modal compra -->
-    <div class="modal fade" id="venta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="venta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -112,8 +111,8 @@
             <option value="ChipT">Chip Telcel</option>
           </select>
           </div>
-          <div class="form-group" id="modelo" style="display: none;">
-            <label for="recipient-name" class="col-form-label">Marcar</label>
+          <div class="form-group" id="divmarca"style="display: none;">
+            <label for="recipient-name" class="col-form-label">Marca</label>
             <select name="marca" id="marca">
             <option value="">Seleccionar</option>
             <option value="Samsung">Samsung</option>
@@ -124,10 +123,11 @@
             <option value="Lanix">Lanix</option>
             <option value="Lanix">Lanix</option>
           </select>
-          </div>
-          <div class="form-group">
+          <div class="form-group" id="modelo"">
             <label for="recipient-name" class="col-form-label">Modelo</label>
-            <input type="tect" class="form-control" name="modelo">
+              <input type="text" class="form-control" name="modelo">
+
+          </div>
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Cantidad</label>
@@ -156,67 +156,108 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Reparacion</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form method="POST" action="{{ route('AgregarReparacion') }}">
+          @csrf
           <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
+            <label for="recipient-name" class="col-form-label">Marca</label>
+            <input type="text" class="form-control" name="marca">
+          </div>
+           <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Modelo</label>
+            <input type="text" class="form-control" name="modelo">
+          </div>
+           <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Reparacion</label>
+            <input type="text" class="form-control" name="reparacion">
           </div>
           <div class="form-group">
-            <label for="message-text" class="col-form-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
+            <label for="recipient-name" class="col-form-label">Precio</label>
+            <input type="number" class="form-control" name="precio">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Anticipo</label>
+            <input type="number" class="form-control" value="0" name="abono">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Detalle:</label>
+            <textarea class="form-control" name="detalle"></textarea>
+          </div>
+           <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Nombre del cliente</label>
+            <input type="text" class="form-control" name="cliente">
+          </div>
+           <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Telefono</label>
+            <input type="tel" class="form-control" name="telefono">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="input" class="btn btn-primary">Agregar</button>
           </div>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
-      </div>
     </div>
   </div>
+</div>
 </div>
 
 <!-- modal encargo -->
-<div class="modal fade" id="encargo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="encargo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Reparacion</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
+        <form method="POST" action="{{ route('AgregarPedido') }}">
+          @csrf
+           <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Tipo</label>
+            <input type="text" class="form-control" name="marca">
           </div>
           <div class="form-group">
-            <label for="message-text" class="col-form-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
+            <label for="recipient-name" class="col-form-label">Descripcion</label>
+            <input type="text" class="form-control" name="modelo">
+          </div> 
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Precio</label>
+            <input type="number" class="form-control" name="precio">
+          </div> 
+           <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Cantidad</label>
+            <input type="number" class="form-control" value="1" name="cantidad">
+          </div> 
+           <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Anticipo</label>
+            <input type="number" class="form-control" name="abono">
+          </div> 
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Fecha para recoger</label> 
+            <input type="date" name="fecha"> 
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="input" class="btn btn-primary">Agregar</button>
           </div>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
-      </div>
     </div>
   </div>
 </div>
-
+</div>
 <!-- modal entrega -->
 <div class="modal fade" id="entrep" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Entregar</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

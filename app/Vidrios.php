@@ -7,6 +7,10 @@ use Illuminate\Notifications\Notifiable;
 
 class Vidrios extends Model
 {
+	 const Modelo = array(
+        'Samsung' => 'Samsung',
+        'Lg' => 'Marketing'
+    );
     use Notifiable;
 
      protected $table = 'vidriosT';

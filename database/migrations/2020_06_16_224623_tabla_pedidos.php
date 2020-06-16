@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class TablaCompraventa extends Migration
+class TablaPedidos extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class TablaCompraventa extends Migration
      */
     public function up()
     {
-        Schema::create('compraventa', function (Blueprint $table) {
+        Schema::create('pedido', function (Blueprint $table) {
             $table->id();
-            $table->string('IngresoEgreso')->nullable();
             $table->string('tipo');
-            $table->string('clave')->nullable();
-            $table->string('cantidad')->nullable();
+            $table->string('descripcion');
+            $table->string('abono')->nullable();
             $table->string('precio');
-            $table->string('detalle')->nullable();
-            $table->string('fecha');
+            $table->string('cantidad');
+            $table->string('fecha_a_recoger')->nullable();
+            $table->string('estado');
             $table->string('total');
         });    
     }
@@ -33,7 +33,7 @@ class TablaCompraventa extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('compraventa');
+        Schema::dropIfExists('pedido');
 
     }
 }

@@ -253,14 +253,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <script src="dist/js/adminlte.min.js"></script>
 
+<!-- Select-->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
+
  <script type="text/javascript">
         $(document).ready(function() {
             $("#tipo").click(function() {
                 var select = document.getElementById("tipo");
                 if (select.value ==  'Cargador' || select.value ==  'Vidrio') {
-                  $('#modelo').show();
+                  $('#divmarca').show();
 
                 }
+            });
+        });
+    </script>
+<script type="text/javascript">
+        $(document).ready(function() {
+            $("#marca").click(function() {  
+                mostrarModelos();
             });
         });
     </script>
@@ -269,10 +279,37 @@ scratch. This page gets rid of all links and provides the needed markup only.
             $("#tipo").click(function() {
                 var select = document.getElementById("tipo");
                 if (select.value ==  'ChipT' || select.value ==  'ChipM' || select.value ==  'Audifonos') {
-                    $("#modelo").hide();
+                    $("#divmarca").hide();
                 }
             });
         });
-    </script>
+</script>
+
+<script type="text/javascript">
+  function mostrarModelos(){
+    var marca = document.getElementById("marca").value;
+    alert(marca);
+      $.ajax({
+        type: "POST",
+        url: "/getModelos",
+        data: { area_id: areaId },
+        success: function(resp){
+            Limpiar();
+        },
+         error: function () {
+                alert('Hubo un error obteniendo las plantas!');
+            }
+    });   
+  }
+</script>
+<script>
+     function Limpiar()
+    {
+       var marca = document.getElementById("marca");
+       alert(marca.value);
+    }    
+</script>
+
+
 </body>
 </html>

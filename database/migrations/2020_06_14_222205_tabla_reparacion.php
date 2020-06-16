@@ -15,10 +15,10 @@ class TablaReparacion extends Migration
     {
         Schema::create('repacioncelulares', function (Blueprint $table) {
             $table->id();
-            $table->string('marcar');
+            $table->string('marca');
             $table->string('modelo');
             $table->string('reparacion');
-            $table->string('detalle');
+            $table->string('detalle')->nullable();
             $table->string('cliente');
             $table->string('telefono');
             $table->string('fecha');
@@ -26,7 +26,7 @@ class TablaReparacion extends Migration
             $table->string('abono');
             $table->string('total');
             $table->string('estado');
-            $table->string('fecha_de_entrega');
+            $table->string('fecha_de_entrega')->nullable();
         });    
     }
 

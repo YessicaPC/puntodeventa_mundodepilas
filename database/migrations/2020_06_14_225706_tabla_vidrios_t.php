@@ -15,7 +15,7 @@ class TablaVidriosT extends Migration
     {
         Schema::create('vidriosT', function (Blueprint $table) {
             $table->id();
-            $table->string('marcar');
+            $table->string('marca');
             $table->string('modelo');
             $table->string('precio');
             $table->string('stock');

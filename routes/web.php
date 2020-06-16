@@ -29,5 +29,9 @@ Route::get('/ventasT', 'AdminControlador@ventasT')->name('ventasT');
 Route::get('/ventasF', 'AdminControlador@ventasF')->name('ventasF');
 
 Route::post('/AgregarVenta', 'AccionesController@AgregarVenta')->name('AgregarVenta');
+Route::post('/AgregarReparacion', 'AccionesController@AgregarReparacion')->name('AgregarReparacion');
 Route::post('/AgregarGasto', 'AccionesController@AgregarGasto')->name('AgregarGasto');
+Route::post('/AgregarPedido', 'AccionesController@AgregarPedido')->name('AgregarPedido');
+Route::post('/getModelos', 'AccionesController@getModelos')->name('getModelos');
+
 

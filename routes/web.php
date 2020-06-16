@@ -29,4 +29,5 @@ Route::get('/ventasT', 'AdminControlador@ventasT')->name('ventasT');
 Route::get('/ventasF', 'AdminControlador@ventasF')->name('ventasF');
 
 Route::post('/AgregarVenta', 'AccionesController@AgregarVenta')->name('AgregarVenta');
+Route::post('/AgregarGasto', 'AccionesController@AgregarGasto')->name('AgregarGasto');
 

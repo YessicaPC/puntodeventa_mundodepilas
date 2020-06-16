@@ -15,11 +15,12 @@ class TablaCompraventa extends Migration
     {
         Schema::create('compraventa', function (Blueprint $table) {
             $table->id();
+            $table->string('IngresoEgreso')->nullable();
             $table->string('tipo');
-            $table->string('clave');
-            $table->string('cantidad');
+            $table->string('clave')->nullable();
+            $table->string('cantidad')->nullable();
             $table->string('precio');
-            $table->string('detalle');
+            $table->string('detalle')->nullable();
             $table->string('total');
         });    
     }

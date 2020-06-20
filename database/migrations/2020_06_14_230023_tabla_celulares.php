@@ -13,7 +13,14 @@ class TablaCelulares extends Migration
      */
     public function up()
     {
-        //
+         Schema::create('celulares', function (Blueprint $table) {
+            $table->id();
+            $table->integer('id_tienda');
+            $table->string('marca');
+            $table->string('modelo');
+            $table->string('precio');
+            $table->string('estado');
+        }); 
     }
 
     /**
@@ -23,6 +30,6 @@ class TablaCelulares extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('celulares');
     }
 }

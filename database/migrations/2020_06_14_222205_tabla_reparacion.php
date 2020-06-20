@@ -15,6 +15,7 @@ class TablaReparacion extends Migration
     {
         Schema::create('repacioncelulares', function (Blueprint $table) {
             $table->id();
+            $table->integer('id_tienda');
             $table->string('marca');
             $table->string('modelo');
             $table->string('reparacion');

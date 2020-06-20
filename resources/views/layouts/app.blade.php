@@ -166,6 +166,63 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </div>
 
       <!-- Sidebar Menu -->
+      @if(Auth::user()->rol == 1)
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Menu
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ url('caja') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Caja</p>
+                </a>
+              </li>
+            </ul>
+             <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ url('Tienda') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Tiendas</p>
+                </a>
+              </li>
+            </ul> 
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ url('venta_dia') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Venta</p>
+                </a>
+              </li>
+            </ul>  
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ url('venta_dia') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Empleados</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Inactive Page</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      @else
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
@@ -182,7 +239,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <li class="nav-item">
                 <a href="#" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Active Page</p>
+                  <p>Empleado</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -205,6 +262,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
         </ul>
       </nav>
+      @endif
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
@@ -286,6 +344,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </script>
 
 <script type="text/javascript">
+        $(document).ready(function() {
+            $("#Nadmin").click(function() {
+                if ($('#Nadmin').prop('checked')) $('#Administrador').show();
+                else $('#Administrador').hide();
+
+            });
+        });
+</script>
+
+<script type="text/javascript">
   function mostrarModelos(){
     var marca = document.getElementById("marca").value;
     alert(marca);
@@ -301,13 +369,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
             }
     });   
   }
-</script>
-<script>
-     function Limpiar()
-    {
-       var marca = document.getElementById("marca");
-       alert(marca.value);
-    }    
 </script>
 
 

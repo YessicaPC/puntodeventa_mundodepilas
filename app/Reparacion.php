@@ -14,7 +14,7 @@ class Reparacion extends Model
 
     protected $guard = 'repacioncelulares';
 
-    protected $fillable = ['marca','modelo','reparacion', 'detalle', 'cliente', 'telefono','fecha','precio','abono','total','estado','fecha_de_entrega'];
+    protected $fillable = ['id_tienda','marca','modelo','reparacion', 'detalle', 'cliente', 'telefono','fecha','precio','abono','total','estado','fecha_de_entrega'];
 
     public $timestamps = false;
 

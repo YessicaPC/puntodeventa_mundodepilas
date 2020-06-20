@@ -14,7 +14,7 @@ class CompraVenta extends Model
 
     protected $guard = 'compraventa';
 
-    protected $fillable = ['IngresoEgreso','tipo','clave', 'cantidad', 'precio', 'descripcion','fecha','total'];
+    protected $fillable = ['id_tienda','IngresoEgreso','tipo','clave', 'cantidad', 'precio', 'descripcion','fecha','total'];
 
     public $timestamps = false;
 

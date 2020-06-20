@@ -15,6 +15,7 @@ class TablaCompraventa extends Migration
     {
         Schema::create('compraventa', function (Blueprint $table) {
             $table->id();
+            $table->integer('id_tienda');
             $table->string('IngresoEgreso')->nullable();
             $table->string('tipo');
             $table->string('clave')->nullable();

@@ -7,6 +7,7 @@ use App\Ventas;
 use App\Vidrios;
 use App\Pedidos;
 use App\Reparacion;
+use App\Tienda;
 
 use Redirect;
 
@@ -20,6 +21,8 @@ class AccionesController extends Controller
 
  public function AgregarVenta(Request $request)
     {
+        $user = Auth::user();
+
     	$carbon = new \Carbon\Carbon();
 		$date = $carbon->now();
 		$fecha = $date->format('Y-m-d');
@@ -27,7 +30,8 @@ class AccionesController extends Controller
     	$total = $request['precio'] * $request['cantidad'];
     	$compra =  CompraVenta::create(array(
     		'IngresoEgreso' => 'Venta',
-    		'tipo' => $request['tipo'],
+    		'id_tienda' => $user->tienda->id_tienda,
+            'tipo' => $request['tipo'],
     		'clave' => $request['marca'] . ' ' . $request['modelo'],
     		'cantidad' => $request['cantidad'],
     		'precio' => $request['precio'],
@@ -40,13 +44,13 @@ class AccionesController extends Controller
 		$venta =  Ventas::where('fecha', '=', $fecha)->first();
 		if (is_null($venta)) {
 			$venta =  Ventas::create(array(
+            'id_tienda' => $user->tienda->id_tienda,
     		'fecha' => $fecha,
     		'venta' => $total,
     		'gastos' => 0,
     		'total' => $total
 
     	));
-
 		}else{
 		$ventaAct = $venta->venta + $total;
 		$totalAct = $venta->total + $total;
@@ -55,21 +59,22 @@ class AccionesController extends Controller
 		$venta->total = $totalAct;
 
 		$venta->save();
-
 		}
-
-		 return Redirect::route('home');
+		 return Redirect::route('caja');
 
     }
 
 
     public function AgregarGasto(Request $request){
 
+        $user = Auth::user();
+
     	$carbon = new \Carbon\Carbon();
 		$date = $carbon->now();
 		$fecha = $date->format('Y-m-d');
 
     	$instancia =  CompraVenta::create(array(
+            'id_tienda' => $user->tienda->id_tienda,
     		'IngresoEgreso' => 'Gasto',
     		'tipo' => $request['tipo'],
     		'precio' => $request['precio'],
@@ -83,6 +88,7 @@ class AccionesController extends Controller
 		$venta =  Ventas::where('fecha', '=', $fecha)->first();
 		if (is_null($venta)) {
 			$venta =  Ventas::create(array(
+            'id_tienda' => $user->tienda->id_tienda,
     		'fecha' => $fecha,
     		'venta' => 0,
     		'gastos' => $request['precio'],
@@ -101,7 +107,7 @@ class AccionesController extends Controller
 
 		}
 		
-		return Redirect::route('home');
+		return Redirect::route('caja');
 
 
     }
@@ -115,6 +121,9 @@ class AccionesController extends Controller
 
     public function AgregarPedido(Request $request)
      {
+
+        $user = Auth::user();
+
         $carbon = new \Carbon\Carbon();
 		$date = $carbon->now();
 		$fecha = $date->format('Y-m-d');
@@ -123,6 +132,7 @@ class AccionesController extends Controller
      	$total = $canP - $request['abono'];
 
     	Pedidos::create(array(
+            'id_tienda' => $user->tienda->id_tienda,
     		'tipo' => $request['marca'],
     		'descripcion' => $request['modelo'],
     		'precio' => $request['precio'],
@@ -139,10 +149,9 @@ class AccionesController extends Controller
     	if ($request['abono'] > 0) {
     		$request['precio'] = $request['abono'] ;
 			$this->AgregarVenta($request);
-      	}else{
-
-			return Redirect::route('home');
       	}
+
+		return Redirect::route('caja');
 
 
      }
@@ -151,11 +160,15 @@ class AccionesController extends Controller
 
      public function AgregarReparacion(Request $request)
      {
+
+        $user = Auth::user();        
+
     	$carbon = new \Carbon\Carbon();
 		$date = $carbon->now();
 		$fecha = $date->format('Y-m-d');
      	$total = $request['precio'] - $request['abono'];
     	$reparacion =  Reparacion::create(array(
+            'id_tienda' => $user->tienda->id_tienda,
     		'marca' => $request['marca'],
     		'modelo' => $request['modelo'],
     		'reparacion' => $request['reparacion'],
@@ -177,10 +190,9 @@ class AccionesController extends Controller
     	if ($request['abono'] > 0) {
     		$request['precio'] = $request['abono'] ;
 			$this->AgregarVenta($request);
-      	}else{
-
-			return Redirect::route('home');
       	}
+		
+        return Redirect::route('caja');
 
 
      }

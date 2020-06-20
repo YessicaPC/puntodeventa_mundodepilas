@@ -15,6 +15,7 @@ class TablaVentas extends Migration
     {
          Schema::create('ventas', function (Blueprint $table) {
             $table->id();
+            $table->integer('id_tienda');
             $table->string('fecha');
             $table->string('venta');
             $table->string('gastos');

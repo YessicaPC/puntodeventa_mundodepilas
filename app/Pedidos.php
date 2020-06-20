@@ -14,7 +14,7 @@ class Pedidos extends Model
 
     protected $guard = 'pedido';
 
-    protected $fillable = ['tipo','descripcion','abono','cantidad', 'precio', 'descripcion','fecha_a_recoger','estado','total'];
+    protected $fillable = ['id_tienda','tipo','descripcion','abono','cantidad', 'precio', 'descripcion','fecha_a_recoger','estado','total'];
 
     public $timestamps = false;
 

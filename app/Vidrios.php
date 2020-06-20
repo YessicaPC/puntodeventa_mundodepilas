@@ -18,7 +18,7 @@ class Vidrios extends Model
 
     protected $guard = 'vidriosT';
 
-    protected $fillable = ['fecha','venta', 'gastos', 'total'];
+    protected $fillable = ['id_tienda','fecha','venta', 'gastos', 'total'];
 
 
 }

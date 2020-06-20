@@ -15,6 +15,7 @@ class TablaPedidos extends Migration
     {
         Schema::create('pedido', function (Blueprint $table) {
             $table->id();
+            $table->integer('id_tienda');
             $table->string('tipo');
             $table->string('descripcion');
             $table->string('abono')->nullable();

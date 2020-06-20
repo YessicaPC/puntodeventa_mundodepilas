@@ -14,9 +14,15 @@ class Ventas extends Model
 
     protected $guard = 'ventas';
 
-    protected $fillable = ['fecha','venta', 'gastos', 'total'];
+    protected $fillable = ['id_tienda','fecha','venta', 'gastos', 'total'];
 
     public $timestamps = false;
+
+    public function ventasTienda() {
+    
+        return $this->hasOne('App\Tienda', 'id_tienda');
+    }  
+
 
 
 }

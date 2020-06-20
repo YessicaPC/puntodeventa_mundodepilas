@@ -36,4 +36,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+     public function relacion() {
+    
+        return $this->hasOne('App\Relacion', 'id_users');
+    }  
+
+    public function tiendas_creadas() {
+    
+        return $this->hasOne('App\Tiendas', 'creado_por');
+    }
+
+    
 }
